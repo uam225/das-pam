@@ -1,4 +1,4 @@
-function pcm_map = generate_pcm(sensor_data, sensor_positions, grid_x, grid_y, c, dt)
+function [pcm_map, x_scan, y_scan] = generate_pam(sensor_data, sensor_positions, grid_x, grid_y, c, dt)
 % generate_pcm - Passive Cavitation Mapping using delay-and-sum beamforming
 %
 % INPUTS:
@@ -16,15 +16,26 @@ function pcm_map = generate_pcm(sensor_data, sensor_positions, grid_x, grid_y, c
 [nChannels, nSamples] = size(sensor_data);
 Nx = length(grid_x);
 Ny = length(grid_y);
-pcm_map = zeros(Ny, Nx);                % Final power map
+dx = 100 / Nx;
+dy = dx;
+%pcm_map = zeros(Ny, Nx);                % Final power map
 time_vector = (0:nSamples-1) * dt;      % Time axis
 
+step = 2;  % Try 2 first. Increase to 3 or more for faster tests
+
+x_scan = 0:step*dx:(Nx-1)*dx;
+y_scan = 0:step*dy:(Ny-1)*dy;
+
+Nx_scan = length(x_scan);
+Ny_scan = length(y_scan);
+
+pcm_map = zeros(Nx_scan, Ny_scan);
 % Loop over each pixel in the image grid
-for ix = 1:Nx
-    for iy = 1:Ny
+for ix = 1:Nx_scan
+    for iy = 1:Ny_scan
         % Get pixel position
-        px = grid_x(ix);
-        py = grid_y(iy);
+        px = x_scan(ix);
+        py = y_scan(iy);
         delayed_signals = zeros(nChannels, nSamples);  % Preallocate % Try flipping nSamples and nChannels to fix orientation difference
 
         for ch = 1:nChannels
