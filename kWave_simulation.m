@@ -4,14 +4,14 @@ clear; clc;
 % DEFINED SETTINGS
 % ---------------------
 ppw = 15;                        
-f_c = 1e6;                       % Center frequency (Hz)
-N_c = 5;                        % Number of cycles
-domain_length = 100e-3;          % Domain size in meters (100 mm)
+f_c = 1e6;                       % Centre frequency (Hz)
+N_c = 5;                         % Number of cycles
+domain_length = 100e-3;          % Domain size in metres (100 mm)
 c_0 = 1500;                      % Speed of sound (m/s)
 density = 1040;                  % Medium density (kg/m³)
 CFL = 0.5;                       
 num_receivers = 64;              % Number of sensors
-sensor_offset = 10e-3;           % Distance from boundary in meters
+sensor_offset = 10e-3;           % Distance from boundary in metres
 
 % ---------------------
 % DERIVED PARAMETERS
@@ -92,7 +92,7 @@ ylabel('receiver number');
 % ---------------------
 % Define source location in mm
 source_x = round((Nx/2) * dx * 1e3); 
-source_y = round((Ny/4) * dy * 1e3);
+source_y = round((Ny/2) * dy * 1e3);
 %source2_x = round((Nx/2.2) * dx * 1e3); 
 
 source_str = sprintf('%dmm_%dmm', source_x, source_y);

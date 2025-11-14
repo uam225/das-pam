@@ -12,7 +12,7 @@ function [pcm_map, x_scan, y_scan] = generate_pam(sensor_data, sensor_positions,
 % OUTPUT:
 %   pcm_map          : [Ny x Nx] matrix of source power estimates
 
-% Initialization
+% Initialisation
 [nChannels, nSamples] = size(sensor_data);
 Nx = length(grid_x);
 Ny = length(grid_y);
