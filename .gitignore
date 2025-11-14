@@ -1,0 +1,12 @@
+# macOS metadata
+.DS_Store
+
+# MATLAB temporary and autosave files
+*.asv
+*.m~
+*.autosave
+*.mex*
+
+# Simulation data and large outputs
+*.mat
+sim_data/
